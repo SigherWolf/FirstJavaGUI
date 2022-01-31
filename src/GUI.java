@@ -30,8 +30,6 @@ public class GUI {
         clickButton.setFocusable(false);
         clickButton.setFont(new Font("Calibri", Font.BOLD, 20));
         clickButton.addActionListener(increment);
-        // clickButton.setMinimumSize(clickButton.getMinimumSize());
-//        clickButton.setMinimumSize(new Dimension(100, 50));
         clickButton.setSize(new Dimension(100, 50));
 
         resetButton.setFocusable(false);
