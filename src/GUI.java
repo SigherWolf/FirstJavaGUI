@@ -34,7 +34,6 @@ public class GUI {
         clickButton.setForeground(Color.white);
         clickButton.setFont(new Font("Calibri", Font.BOLD, 20));
         clickButton.addActionListener(increment);
-        clickButton.addMouseListener(removeHover);
 
         resetButton.setFocusable(false);
         resetButton.addActionListener(reset);
@@ -61,21 +60,5 @@ public class GUI {
                 clickButton.setText("Number of clicks: " + count);
             }
         }
-    };
-
-    MouseListener removeHover = new MouseListener() {
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            clickButton.setBorder(BorderFactory.createEmptyBorder());
-        }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {}
-        @Override
-        public void mousePressed(MouseEvent e) {}
-        @Override
-        public void mouseReleased(MouseEvent e) {}
-        @Override
-        public void mouseExited(MouseEvent e) {}
     };
 }
