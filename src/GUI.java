@@ -1,45 +1,43 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class GUI {
 
-    private static final JFrame frame = new JFrame();
+    private static final JFrame window = new JFrame();
     private static final JPanel panel = new JPanel();
-    private static final JButton clickButton = new JButton("Click to start the test!");
+    private static final String DEFAULT = "Click to start the test!";
+    private static final JButton clickButton = new JButton(DEFAULT);
     private static final JButton resetButton = new JButton("Reset clicks");
-    private static final JLabel label = new JLabel("Number of clicks: 0");
-    private int count;
+    private BoxLayout bl = new BoxLayout(panel, BoxLayout.X_AXIS);
+    private int count = 0;
 
     public GUI() {
         panel.setBorder(BorderFactory.createEmptyBorder(300, 400, 100, 400));
-        panel.setLayout(new GridLayout(2, 1, 0, 5));
+        panel.setLayout(bl);
         panel.setBackground(Color.gray);
         panel.add(clickButton);
         panel.add(resetButton);
-        panel.add(label);
 
-        frame.add(panel);
-        frame.setDefaultCloseOperation((JFrame.EXIT_ON_CLOSE));
-        frame.setTitle("Tom's Click Test");
-        frame.pack();
-        frame.setVisible(true);
+        window.add(panel);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setTitle("Tom's Click Test");
+        window.pack();
+        window.setVisible(true);
 
         clickButton.setFocusable(false);
+        clickButton.setBackground(Color.black);
+        clickButton.setForeground(Color.white);
         clickButton.setFont(new Font("Calibri", Font.BOLD, 20));
         clickButton.addActionListener(increment);
-        clickButton.setSize(new Dimension(100, 50));
-        clickButton.add(label, BorderLayout.CENTER);
 
         resetButton.setFocusable(false);
         resetButton.addActionListener(reset);
         resetButton.setFont(new Font("Calibri", Font.PLAIN, 20));
-
-        label.setVisible(false);
-        label.setVerticalAlignment(JLabel.CENTER);
-        label.setHorizontalAlignment(JLabel.CENTER);
-        label.setFont(new Font("Calibri", Font.PLAIN, 20));
     }
 
     public static void main(String[] args) {
@@ -50,8 +48,7 @@ public class GUI {
         @Override
         public void actionPerformed(ActionEvent e) {
             count = 0;
-            label.setVisible(false);
-            clickButton.setText("Click to start the test!");
+            clickButton.setText(DEFAULT);
         }
     };
 
@@ -59,9 +56,9 @@ public class GUI {
         @Override
         public void actionPerformed(ActionEvent e) {
             count++;
-            label.setVisible(true);
-            label.setText("Number of clicks: " + count);
-            if (count >= 1) { clickButton.setText(""); }
+            if (count >= 1) {
+                clickButton.setText("Number of clicks: " + count);
+            }
         }
     };
 }
